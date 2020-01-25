@@ -63,7 +63,7 @@
 				?>
 				<tr>
 					<td> <?php echo $i['order_id'] ?> </td>
-					<td>	<a class='btn btn-sm btn-primary btn-xs' href="pelanggan_invoice.php?id=<?php echo $i['order_id']; ?>"><i class="fa fa-file"></i> detail</a> </td>
+					<td>	<a class='btn btn-sm btn-default btn-xs' href="pelanggan_invoice.php?id=<?php echo $i['order_id']; ?>"><i class="fa fa-file"></i> detail</a> </td>
 					<td><?php echo $i['tgl_checkout'] ?></td>
 					<td><?php echo $i['nama_penerima'] ?></td>
 					<td class="text-center">
@@ -75,7 +75,7 @@
 						}elseif($i['status'] == 2){
 							echo "<a href='#' ><span class='label label-warning'>Menunggu Validasi Pembayaran</span></a>";
 						}elseif($i['status'] == 3){
-							echo "<a href='#' ><span class='label label-success'>Pemesanan Tervalidasi</span></a>";
+							echo "<a href='#' ><span class='label label-primary'>Pemesanan Berhasil</span></a>";
 						}elseif($i['status'] == 4){
 							echo "<a href='#' ><span class='label label-info'>Pesanan Telah DiKirim</span></a>";
 						}elseif($i['status'] == 5){
@@ -111,11 +111,30 @@
 						?>
 					</td>
 					<td class="text-center">
-						
-							
-							<a class='btn btn-sm btn-primary btn-xs' href="konfirpembayaran.php?id=<?php echo $i['order_id']; ?>"><i class="fa fa-dollar"></i> Konfir Pembayaran</a>
-						 <a class='btn btn-sm btn-success btn-xs' href="selesai_act.php?id=<?php echo $i['order_id']; ?>"><i class="fa fa-check"></i> Selesai</a>
-					
+					<?php
+        $ido =$i['order_id'];
+        $status = $i['status'];
+		  $a1 = "<a class='btn btn-sm btn-primary btn-xs' href='konfirpembayaran.php?id=$ido'><i class='fa fa-dollar'></i> Konfir Pembayaran</a>";
+
+          $a2 = "<a class='btn btn-sm btn-success btn-xs' href='selesai_act.php?id=$ido'><i class='fa fa-check'></i> Selesai</a>";
+
+          if ($status==1 ){
+          echo $a1;
+          } else if ($status==2 ) 
+          {
+              echo '-';
+          } else if ($status==3 ) 
+          {
+              echo $a2;
+          } else if ($status==4 ) 
+          {
+              echo $a2;
+          } else   
+          {
+              echo '-';
+          };
+           
+           ?>
 					</td>
 				</tr>
 				<?php 

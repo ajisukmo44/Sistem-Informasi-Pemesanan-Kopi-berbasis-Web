@@ -89,7 +89,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
                       <tbody>
 
                      <?php 
-                     $query = mysqli_query($conn,"SELECT * FROM tb_bayar ORDER BY id_bayar DESC");
+                     $query = mysqli_query($conn,"SELECT * FROM tb_bayar ORDER BY status ASC");
                      if(mysqli_num_rows($query) == 0)
                      {echo "
                        
@@ -119,10 +119,28 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 						?>
            </td>
            <?php $a = $data['order_id']; ?>
-           <td><a href="#" type="button" class="badge badge-primary" data-toggle="modal" data-target="#myModal1"><i class='fa fa-images'></i> Bukti Transfer </a></td> 
-    <td><h5><a href="modul/aksivalidasi/pbyupdate.php?id_bayar=<?=$data['id_bayar']?>&order_id=<?=$data['order_id']?>"  class="badge badge-success btn-sm"><i class='fa fa-check'></i>
-
-    </a></h5></td>
+           <td>   
+           <a href="#" type="button" class="badge badge-primary" data-toggle="modal" data-target="#myModal1"><i class='fa fa-images'></i> Bukti Transfer </a></td> 
+    <td>
+    <?php
+          $ido = $data['order_id']; 
+          $idb = $data['id_bayar'];
+          $a1 = "<h5><a href='modul/aksivalidasi/pbyupdate.php?id_bayar=$idb&order_id=$ido'  class='badge badge-success btn-sm'><i class='fa fa-check'></i></a></h5>";
+          $a2 = "<h5><a href='#'  class='badge badge-secondary btn-sm'><i class='fa fa-check'></i></a></h5>";
+          
+          if ($status==1 ){
+          echo $a1;
+          } else   
+          {
+              echo $a2;
+          };
+           
+           ?>
+    
+    
+    
+    
+    </td>
    </tr>
                          
                        <!-- Modal Edit -->

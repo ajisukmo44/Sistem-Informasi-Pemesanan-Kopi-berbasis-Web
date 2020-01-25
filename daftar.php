@@ -58,6 +58,7 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 									<input type="text" class="input" required="required" name="nama" placeholder="Masukkan nama lengkap ..">
 								</div>
 
+								
 								<div class="form-group">
 									<label for="">Email</label>
 									<input type="email" class="input" required="required" name="email" placeholder="Masukkan email ..">
@@ -74,8 +75,13 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 								</div>
 
 								<div class="form-group">
+									<label for="">Username</label>
+									<input type="text" class="input" required="required" autocomplete="off" name="username" placeholder="Masukkan username ..">
+								</div>
+
+								<div class="form-group">
 									<label for="">Password</label>
-									<input type="password" class="input" required="required" name="password" placeholder="Masukkan password ..">
+									<input type="password" class="input" required="required" autocomplete="off" name="password" placeholder="Masukkan password ..">
 									<small class="text-muted">Password ini digunakan untuk login ke akun anda.</small>
 								</div>
 

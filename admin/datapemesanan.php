@@ -88,7 +88,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
                       <tbody>
 
                      <?php 
-                     $query = mysqli_query($conn,"SELECT * FROM tb_order a JOIN tb_pelanggan b ON a.pelanggan_id = b.pelanggan_id ORDER BY a.order_id DESC");
+                     $query = mysqli_query($conn,"SELECT * FROM tb_order a JOIN tb_pelanggan b ON a.pelanggan_id = b.pelanggan_id ORDER BY a.status  ASC");
                      if(mysqli_num_rows($query) == 0)
                      {echo "
                        
@@ -117,7 +117,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 						}elseif($status == 2){
 							echo "<a href='#' ><span class='badge badge-warning'>Menunggu Validasi Pembayaran</span></a>";
 						}elseif($status == 3){
-							echo "<a href='#' ><span class='badge badge-success'>Pemesanan Tervalidasi</span></a>";
+							echo "<a href='#' ><span class='badge badge-primary'>Pemesanan Berhasil</span></a>";
 						}elseif($status == 4){
 							echo "<a href='#' ><span class='badge badge-info'>Pesanan Telah DiKirim</span></a>";
 						}elseif($status == 5){
@@ -126,7 +126,36 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 						?>
            </td>
 
-           <td><a href="#" type="button" class="badge badge-primary" data-toggle="modal" data-target="#myModal<?php echo $data['order_id']; ?>"><i class='fa fa-edit'></i> update</a></td> 
+         <td>
+           <?php
+          $ido = $data['order_id']; 
+          $a1 = " <a href='#' type='button' class='badge badge-success' data-toggle='modal' data-target='#myModal$ido'><i class='fa fa-edit'></i> update</a>";
+          $a2 = "<a href='#' type='button' class='badge badge-secondary' data-toggle='modal' data-target='#'><i class='fa fa-edit'></i> update</a>";
+
+          if ($status==1 ){
+          echo $a1;
+          } else if ($status==2 ) 
+          {
+              echo $a1;
+          } else if ($status==3 ) 
+          {
+              echo $a1;
+          } else if ($status==4 ) 
+          {
+              echo $a1;
+          } else   
+          {
+              echo $a2;
+          };
+           
+           ?>
+           </td>  
+
+           
+          
+           
+           
+           </td> 
   </tr>
                          
                        <!-- Modal Edit -->
@@ -142,8 +171,8 @@ include 'fungsi/cek_session.php';      // Panggil data setting
                    <div class="modal-body">
                    <form action="modul/aksivalidasi/statusupdate.php" method="POST">
      
-                   <h5 style="text-align:center;"><a href="modul/aksivalidasi/statusupdate.php?order_id=<?= $data['order_id'] ?>"  class="badge badge-success btn-sm mr-3"><i class='fa fa-check'></i> Pesanan Tervalidasi</a>
-                   <a href="modul/aksivalidasi/statusupdate3.php?order_id=<?= $data['order_id'] ?>"  class="badge badge-info btn-sm"><i class='fa fa-truck'></i> Pesanan telah dikirim</a></h5>
+                   <h5 style="text-align:center;">
+                   <a href="modul/aksivalidasi/statusupdate3.php?order_id=<?= $data['order_id'] ?>"  class="badge badge-info btn-sm mr-3"><i class='fa fa-truck'></i> Pesanan telah dikirim </a><a href="modul/aksivalidasi/statusupdate.php?order_id=<?= $data['order_id'] ?>"  class="badge badge-success btn-sm "><i class='fa fa-check'></i> Pesanan Selesai</a></h5>
                    <hr>
                       <?php 
                         }

@@ -15,6 +15,9 @@
 $id_produk = $_GET['id'];
 $data = mysqli_query($koneksi,"select * from tb_produk a, tb_kategori b where a.kategori_id=b.kategori_id and produk_id='$id_produk'");
 while($d=mysqli_fetch_array($data)){
+
+	$released = date('d-m-Y', strtotime($d['released']));
+
 	?>
 	<div class="section">
 		<!-- container -->
@@ -67,8 +70,9 @@ while($d=mysqli_fetch_array($data)){
 							</p>
 							
 							<p>
+
 								<strong>Released:</strong> 
-								<?= $d['released'] ?>
+								<?= $released; ?>
 							</p>
 							<p>
 								<strong>Stok:</strong> 
@@ -84,7 +88,16 @@ while($d=mysqli_fetch_array($data)){
 										<span class="text-uppercase">QTY: </span>
 										<input class="input" type="number" required="required">
 									</div> -->
-									<a class="primary-btn add-to-cart" href="keranjang_masukkan.php?id=<?php echo $d['produk_id']; ?>&redirect=detail"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</a>
+									<a class="primary-btn add-to-cart" href="<?php
+									$idp = $d['produk_id'];
+									$stok = $d['stok'];
+									if($stok==0) {
+									echo "#"; } 
+									else {
+									echo "keranjang_masukkan.php?id=$idp&redirect=detail";
+
+									}; ?>
+									"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</a>
 									<div class="pull-right">
 										<!-- <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 										<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>

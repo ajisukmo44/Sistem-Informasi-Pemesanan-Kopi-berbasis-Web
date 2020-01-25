@@ -3,10 +3,10 @@
 include 'koneksi.php';
 
 // menangkap data yang dikirim dari form
-$email = $_POST['email'];
+$username = $_POST['username'];
 $password = md5($_POST['password']);
 
-$login = mysqli_query($koneksi, "SELECT * FROM tb_pelanggan WHERE email='$email' AND password='$password'");
+$login = mysqli_query($koneksi, "SELECT * FROM tb_pelanggan WHERE username='$username' AND password='$password'");
 $cek = mysqli_num_rows($login);
 
 if($cek > 0){
@@ -23,6 +23,7 @@ if($cek > 0){
 	$_SESSION['pelanggan_id'] = $data['pelanggan_id'];
 	$_SESSION['nama'] = $data['nama'];
 	$_SESSION['alamat'] = $data['alamat'];
+	$_SESSION['email'] = $data['email'];
 	$_SESSION['no_hp'] = $data['no_hp'];
 	$_SESSION['status'] = "login";
 	header("location:pelanggan.php");

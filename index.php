@@ -5,16 +5,12 @@
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
-		<div id="main" class="col-md-6">
-		<img src="frontend/img/007.jpg" alt="" style="width:100%; height:400px">
 		
-		<hr>
-			</div>
-			<div id="main" class="col-md-6">
+			<!-- <div id="main" class="col-md-12">
 		<img src="frontend/img/004.jpg" alt="" style="width:100%; height:400px">
 		
 		<hr>
-			</div>
+			</div> -->
 			<center><h3 style="background-color:#red"> KOPI MUKIDI </h3></center>
 			<hr>
 		<div class="row" >

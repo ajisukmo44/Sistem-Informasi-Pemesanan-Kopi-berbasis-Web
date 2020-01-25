@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title>Rumah Kopi Mukidi</title>
+	<title>Rumah Kopi Mukidi Temanggung</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
@@ -222,7 +222,8 @@ if($file == "checkout.php"){
 						}else{
 							?>
 							<li class="header-account dropdown default-dropdown">
-								<a href="masuk.php" class="text-uppercase main-btn">akun saya</a> 
+								<a href="masuk.php" class="text-uppercase main-btn">login</a> 
+								<a href="daftar.php" class="text-uppercase main-btn">daftar</a>
 							</li>
 							<?php
 						}
@@ -252,8 +253,9 @@ if($file == "checkout.php"){
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
 						<li><a href="index.php">Home</a></li>
-						<li><a href="produk.php">Produk</a></li>	
+						<li><a href="produk.php">Produk Kategori</a></li>	
 						<li><a href="tentangkami.php">Tentang Kami</a></li>
+						
 
 					</ul>
 				</div>
