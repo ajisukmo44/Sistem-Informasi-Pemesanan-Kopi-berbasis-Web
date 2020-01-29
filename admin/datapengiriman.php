@@ -123,7 +123,8 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 
             
             <!-- Modal Edit M-->
-            <div class="modal fade" id="myModal<?php echo $data['user_id']; ?>" role="dialog">
+    <!-- Modal Edit M-->
+    <div class="modal fade" id="myModal<?php echo $data['no_resi']; ?>" role="dialog">
             <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -133,44 +134,56 @@ include 'fungsi/cek_session.php';      // Panggil data setting
         </button>
       </div>
       <div class="modal-body">
-      <form action="modul/aksiuser/aksiedituser.php" method="post">
+      <form action="modul/aksiuser/aksieditkirim.php" method="post">
       <?php
-                        $id = $data['user_id']; 
-                        $query_view = mysqli_query($conn, "SELECT * FROM tb_user WHERE user_id='$id'");
+                        $id = $data['no_resi']; 
+                        $query_view = mysqli_query($conn, "SELECT * FROM tb_pengiriman WHERE no_resi='$id'");
                         //$result = mysqli_query($conn, $query);
-                        while ($row = mysqli_fetch_assoc($query_view)) { $nu = $row['nama_user']; $us = $row['username']; $jb = $row['hakakses']; 
+                        while ($row = mysqli_fetch_assoc($query_view)) { $oi = $row['order_id']; 
+                          $tk = $row['tanggal_kirim']; $np = $row['nama_pengirim']; 
+                          $hp = $row['nohp_pengirim']; $ket = $row['keterangan']; 
                         ?>
 
 
       <div class="form-group row">
-    <label for="username" class="col-sm-3 col-form-label">Id User</label>
-    <div class="col-sm-9">
+    <label for="username" class="col-sm-4 col-form-label">No Resi</label>
+    <div class="col-sm-8">
       
-      <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $id ?>" readonly>
+      <input type="text" class="form-control" id="no_resi" name="no_resi" value="<?= $id ?>" readonly>
     </div>
   </div>
   <div class="form-group row">
-    <label for="nama_user" class="col-sm-3 col-form-label">Nama User</label>
-    <div class="col-sm-9">
-      <input type="text" class="form-control" id="nama_user" name="nama_user" value="<?= $nu ?>" required>
+    <label for="order_id" class="col-sm-4 col-form-label">Order ID</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="order_id" name="order_id" value="<?= $oi ?>" readonly>
     </div>
   </div>
   <div class="form-group row">
-    <label for="username" class="col-sm-3 col-form-label">Username</label>
-    <div class="col-sm-9">
-      <input type="text" class="form-control" id="username" name="username" value="<?= $us ?>" required>
+    <label for="nama_pengirim" class="col-sm-4 col-form-label">Nama Pengirim</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="nama_pengirim" name="nama_pengirim" value="<?= $np ?>" required>
+    </div>
+  </div>
+ 
+  <div class="form-group row">
+    <label for="no_hp" class="col-sm-4 col-form-label">No Hp</label>
+    <div class="col-sm-8">
+      <input type="number" class="form-control" id="no_hp"  name="no_hp" value="<?= $hp ?>" required>
     </div>
   </div>
   <div class="form-group row">
-    <label for="password" class="col-sm-3 col-form-label">Password</label>
-    <div class="col-sm-9">
-    <select class="form-control" name="hakakses">
-  <option value="<?= $jb ?>"><?= $jb ?></option>
-  <option value="admin">admin</option>
-  <option value="pemilik">pemilik</option>
-</select>  
-</div>
-</div>
+    <label for="tanggal_kirim" class="col-sm-4 col-form-label">Tanggal Kirim</label>
+    <div class="col-sm-8">
+      <input type="date" class="form-control" id="tanggal_kirim" name="tanggal_kirim" value="<?= $tk ?>"  required>
+    </div>
+  </div>
+ 
+  <div class="form-group row">
+    <label for="keterangan" class="col-sm-4 col-form-label">Keterangan</label>
+    <div class="col-sm-8">
+      <input type="keterangan" class="form-control" id="keterangan"  name="keterangan" value="<?= $ket ?>" required>
+    </div>
+  </div>
   <hr>
   <div class="form-group row">
     <div class="col-sm-12">
@@ -195,6 +208,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
       </table>          
   </div>
 
+
 <!-- Modal Edit HTML -->
 
 
@@ -215,12 +229,12 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 
 
     <div class="form-group row">
-    <label for="order_id" class="col-sm-4 col-form-label">No Resi</label>
+    <label for="order_id" class="col-sm-4 col-form-label">ORDER ID</label>
     <div class="col-sm-8">
     <select name="order_id" id="order_id" class="form-control" required>
               <option value="">--ID ORDER--</option>
                 <?php
-                $query = "SELECT * FROM tb_order ORDER BY order_id";
+                $query = "SELECT * FROM tb_order WHERE status= 3 ORDER BY order_id";
                 $sql = mysqli_query($conn, $query);
                 while($data = mysqli_fetch_array($sql)){echo '<option value="'.$data['order_id'].'">'.$data['order_id'].'</option>';}
                 ?>
