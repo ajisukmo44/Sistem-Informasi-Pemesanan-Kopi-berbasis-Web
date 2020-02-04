@@ -25,6 +25,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <link href="images/logo1.ico" rel="shortcut icon"/>
 </head>
  <!-- Page Wrapper -->
 

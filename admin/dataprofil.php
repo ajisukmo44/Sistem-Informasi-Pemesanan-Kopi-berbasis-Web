@@ -25,6 +25,9 @@ include "fungsi/imgpreview.php";
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+
+  <link href="images/logo1.ico" rel="shortcut icon"/>
 <style>
 .modal-admin {
     /* new custom width */
@@ -127,8 +130,6 @@ include "fungsi/imgpreview.php";
                           $img = $row['foto'];
                         ?>
 
-
-
     <div class="form-group row">
       <input type="hidden" class="form-control" id="id_profil" name="id_profil" value="<?= $id ?>" readonly>
   </div>
@@ -139,7 +140,6 @@ include "fungsi/imgpreview.php";
       <input type="text" class="form-control" id="isi_profil" name="isi_profil" value="<?= $ip ?>" required>
     </div>
 </div> 
-
 
   <div class="form-group row">
   <label for="gambar" class="col-sm-3 ml-3  col-form-label">Gambar Sebelumnya</label>
@@ -205,36 +205,3 @@ include "fungsi/imgpreview.php";
 });
     </script>
   
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-        $('#myModal').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id_produk');
-            //menggunakan fungsi ajax untuk pengambilan data
-            $.ajax({
-                type : 'post',
-                url : 'dataproduk.php',
-                data :  'rowid='+rowid,
-                success : function(data){
-                $('.fetched-data').html(data);//menampilkan data ke dalam modal
-                }
-            });
-         });
-    });
-  </script>
-   <script type="text/javascript">
-    $(document).ready(function(){
-        $('#myModal1').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id_kategori');
-            //menggunakan fungsi ajax untuk pengambilan data
-            $.ajax({
-                type : 'post',
-                url : 'dataproduk.php',
-                data :  'rowid='+rowid,
-                success : function(data){
-                $('.fetched-data').html(data);//menampilkan data ke dalam modal
-                }
-            });
-         });
-    });
-  </script>

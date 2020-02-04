@@ -27,6 +27,7 @@
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="frontend/css/style2.css" />
 
+    <link href="gambar/logo1.ico" rel="shortcut icon"/>
 	
 
   <!-- Custom styles for this template -->

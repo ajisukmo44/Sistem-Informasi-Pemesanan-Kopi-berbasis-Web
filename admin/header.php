@@ -16,6 +16,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 
   <title>Dashboard Admin</title>
 
+  <link href="../gambar/logo.ico" rel="shortcut icon"/>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link

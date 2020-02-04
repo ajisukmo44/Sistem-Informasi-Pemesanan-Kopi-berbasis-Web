@@ -17,6 +17,7 @@ include 'fungsi/base_url.php';
 
   <title>Dashboard Admin</title>
 
+  <link href="images/logo1.ico" rel="shortcut icon"/>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link

@@ -24,6 +24,9 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+  
+  <link href="images/logo1.ico" rel="shortcut icon"/>
 
 </head>
  <!-- Page Wrapper -->
@@ -68,11 +71,11 @@ include 'fungsi/cek_session.php';      // Panggil data setting
                 <table class="table table-stripped table-hover datatab" id="dataTable" width="100%" cellspacing="0">
                   <thead style="background-color: #595959; color:#fff; line-height:8px">
                     <tr style="text-align:center;">
-                      <th>ID</th>
+                      <th>ID&nbsp;Pelanggan</th>
                       <th>Nama </th>
                       <th>Alamat</th>
                       <th>Email</th>
-                      <th>No Hp</th>
+                      <th>No&nbsp;Hp</th>
                     </tr>
                   </thead>
                   

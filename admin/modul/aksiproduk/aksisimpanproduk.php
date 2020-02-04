@@ -1,79 +1,71 @@
 <?php session_start();
 include '../../koneksi.php';                    // Panggil koneksi ke database
 
-$id   = mysqli_real_escape_string($conn, $_GET['id']);
-
-if(isset($_POST['simpan']))
-{ 
-
-  $nama_produk  = mysqli_real_escape_string($conn,$_POST['nama_produk']);
-  $kategori     = mysqli_real_escape_string($conn,$_POST['kategori_id']);
-  $harga        = mysqli_real_escape_string($conn,$_POST['harga']);
-  $released     = mysqli_real_escape_string($conn,$_POST['released']);
-  $berat         = mysqli_real_escape_string($conn,$_POST['berat']);
-  $stok         = mysqli_real_escape_string($conn,$_POST['stok']);
-  $deskripsi    = mysqli_real_escape_string($conn,$_POST['deskripsi']);
-
-  $cekdata = "SELECT nama_produk FROM tb_produk WHERE nama_produk = '$nama_produk' ";
-  $ada     = mysqli_query($conn, $cekdata);
-  if(mysqli_num_rows($ada) > 0)
-  { 
-    echo "<script>alert('ERROR: nama_produk telah terdaftar, silahkan pakai nama_produk lain!');history.go(-1)</script>";
-  }
-    else
-    {   
-        $allowed_ext  = array('jpg', 'jpeg', 'png', 'gif');
-        $file_name    = $_FILES['img']['name']; // File adalah name dari tombol input pada form
-        $file_ext     = pathinfo($file_name, PATHINFO_EXTENSION);
-        $file_size    = $_FILES['img']['size'];
-        $file_tmp     = $_FILES['img']['tmp_name'];
-        $lokasi       = '../../images/produk/'.$nama_produk.'.'.$file_ext;
-        $img          = $nama_produk.'.'.$file_ext;
-  
-        if(in_array($file_ext, $allowed_ext) === true)
-        {
-          move_uploaded_file($file_tmp, $lokasi);
+	// membuat variabel untuk menampung data dari form
+  $id             = $_GET['id'];
+  $nama_produk    = $_POST['nama_produk'];
+  $kategori_id    = $_POST['kategori_id'];
+  $harga          = $_POST['harga'];
+  $released       = $_POST['released'];
+  $berat          = $_POST['berat'];
+  $stok           = $_POST['stok'];
+  $deskripsi      = $_POST['deskripsi'];
+  $img            = $_FILES['img']['name'];
 
 
-      // Proses insert data dari form ke db
-      $sql = "INSERT INTO tb_produk ( produk_id,
-                                nama_produk,
-                                kategori_id,
-                                harga,
-                                berat,
-                                stok,
-                                released,
-                                deskripsi,
-                                produk_foto
-                               )
-                        VALUES ('$id',
-                                '$nama_produk',
-                                '$kategori',
-                                '$harga',
-                                '$berat',
-                                '$stok',
-                                '$released',
-                                '$deskripsi',
-                                '$img')";
+//cek dulu jika ada gambar produk jalankan coding ini
+if($img != "") {
+  $ekstensi_diperbolehkan = array('png','jpg'); //ekstensi file gambar yang bisa diupload 
+  $x = explode('.', $img); //memisahkan nama file dengan ekstensi yang diupload
+  $ekstensi = strtolower(end($x));
+  $file_tmp = $_FILES['img']['tmp_name'];   
+  $angka_acak     = rand(1,999);
+  $nama_gambar_baru = $angka_acak.'-'.$img; //menggabungkan angka acak dengan nama file sebenarnya
+        if(in_array($ekstensi, $ekstensi_diperbolehkan) === true)  {     
+                move_uploaded_file($file_tmp, '../../images/produk/'.$nama_gambar_baru); //memindah file gambar ke folder gambar
+                  // jalankan query INSERT untuk menambah data ke database pastikan sesuai urutan (id tidak perlu karena dibikin otomatis)
+                  $query = "INSERT INTO tb_produk (produk_id, nama_produk, kategori_id, harga, released, berat, stok, deskripsi,produk_foto) VALUES ('$id', '$nama_produk', '$kategori_id','$harga','$released','$berat','$stok','$deskripsi','$nama_gambar_baru')";
+                  $result = mysqli_query($conn, $query);
+                  // periska query apakah ada error
+                  if(!$result){
+                      die ("Query gagal dijalankan: ".mysqli_errno($conn).
+                           " - ".mysqli_error($conn));
+                  } else {
+                    //tampil alert dan akan redirect ke halaman index.php
+                    //silahkan ganti index.php sesuai halaman yang akan dituju
+                    echo "<script>alert('Data berhasil ditambah.');window.location='../../dataproduk.php';</script>";
+                  }
 
-            if(mysqli_query($conn, $sql)) 
-            {
-              echo "<script>alert('Insert data berhasil! Klik ok untuk melanjutkan');location.replace('../../dataproduk.php')</script>";
-            } 
-              else 
-              {
-                echo "Error updating record: " . mysqli_error($conn);
-              }
-          }
-          
-          else
-          {
-            echo "<script>alert('Jenis file tidak sesuai!');history.go(-1)</script>";
-          }
-      }
-      }
-        else
-        {
-          echo "<script>alert('Gak boleh tembak langsung ya, pencet dulu tombol uploadnya!');history.go(-1)</script>";
-        }
-      ?>
+            } else {     
+             //jika file ekstensi tidak jpg dan png maka alert ini yang tampil
+                echo "<script>alert('Ekstensi gambar yang boleh hanya jpg atau png.');window.location='../../dataproduk.php';</script>";
+            }
+} else {
+   $query = "INSERT INTO tb_produk (produk_id, nama_produk, kategori_id, harga, released, berat, stok, deskripsi) VALUES ('$id', '$nama_produk', '$kategori_id','$harga','$released','$berat','$stok','$deskripsi')";
+                  $result = mysqli_query($conn, $query);
+                  // periska query apakah ada error
+                  if(!$result){
+                      die ("Query gagal dijalankan: ".mysqli_errno($conn).
+                           " - ".mysqli_error($conn));
+                  } else {
+                    //tampil alert dan akan redirect ke halaman index.php
+                    //silahkan ganti index.php sesuai halaman yang akan dituju
+                    echo "<script>alert('Data berhasil ditambah.');window.location='../../dataproduk.php';</script>";
+                  }
+};
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

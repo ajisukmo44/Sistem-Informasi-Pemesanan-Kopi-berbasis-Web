@@ -27,6 +27,8 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 
   <title>Admin | Data User</title>
 
+
+  <link href="images/logo1.ico" rel="shortcut icon"/>
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
@@ -154,7 +156,7 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
     </div>
   </div>
   <div class="form-group row">
-    <label for="password" class="col-sm-3 col-form-label">Password</label>
+    <label for="password" class="col-sm-3 col-form-label">Jabatan</label>
     <div class="col-sm-9">
     <select class="form-control" name="hakakses">
   <option value="<?= $jb ?>"><?= $jb ?></option>
@@ -227,7 +229,7 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
     </div>
   </div>
   <div class="form-group row">
-    <label for="password" class="col-sm-3 col-form-label">Password</label>
+    <label for="password" class="col-sm-3 col-form-label">Jabatan</label>
     <div class="col-sm-9">
     <select class="form-control" name="jabatan">
   <option value="admin">Admin</option>

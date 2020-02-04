@@ -36,6 +36,8 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+  <link href="images/logo1.ico" rel="shortcut icon"/>
 <style>
 .modal-admin {
     /* new custom width */
@@ -91,9 +93,9 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
                 <table class="table table-stripped table-hover datatab" id="dataTable" width="100%" cellspacing="0">
                   <thead style="background-color: #595959; color:#fff; line-height:8px">
                     <tr style="text-align:center;">
-                      <th>ID Produk</th>
+                      <th>ID&nbsp;Produk</th>
                       <th>Foto</th>
-                      <th>Nama Produk</th>
+                      <th>Nama&nbsp;Produk</th>
                       <th>Kategori</th>
                       <th>Released</th>
                       <th>Harga</th>
@@ -110,27 +112,25 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
       
           while ($data = mysqli_fetch_assoc($query)) 
           {
+            $tgl =  date('d-m-Y', strtotime($data['released']));
           ?>
             <tr style="text-align:center;">
               <td><?php echo $data['produk_id']; ?></td>
               <td style='text-align: center'><img src='images/produk/<?= $data['produk_foto'] ?>' width='50px' height='30px'></td>
               <td><?php echo $data['nama_produk']; ?></td>
               <td><?php echo $data['kategori_nama']; ?></td>
-              <td><?php echo $data['released']; ?></td>
+              <td><?php echo $tgl; ?></td>
               <td><?php echo $data['harga']; ?></td>
               <td><?php echo $data['berat']; ?></td>
               <td><?php echo $data['stok']; ?></td>
-              <td><a href='' class='badge badge-secondary'>Deskripsi</a></td>
+              <?php echo "<td><a href='#myModal' class='badge badge-secondary' id='custId' data-toggle='modal' data-id=".$data['produk_id']."> deskripsi </a></td>"; ?>
+
               <td>
                 <!-- Button untuk modal -->
-                <h5><a href="#" type="button" class="badge badge-info" data-toggle="modal" data-target="#myModal<?php echo $data['produk_id']; ?>"><i class='fa fa-edit'></i> edit</a>
-                <a href='#' data-href='modul/aksiproduk/aksihapusproduk.php?produk_id=<?= $data['produk_id'] ?>' class='badge badge-danger' data-toggle='modal' data-target='#confirm-delete'><i class='fa fa-times'></i> hapus  </a></h5>
+                <h5><a href="#" type="button" class="badge badge-info" data-toggle="modal" data-target="#myModal<?php echo $data['produk_id']; ?>"><i class='fa fa-edit'></i> edit</a>&nbsp;<a href='#' data-href='modul/aksiproduk/aksihapusproduk.php?produk_id=<?= $data['produk_id'] ?>' class='badge badge-danger' data-toggle='modal' data-target='#confirm-delete'><i class='fa fa-times'></i> hapus  </a></h5>
                 
               </td>
             </tr>
-
-
-
             <!-- Modal Edit -->
 
             
@@ -214,7 +214,6 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
     <div class="form-group row">
     <label for="gambar" class="col-sm-3 col-form-label">Gambar Baru</label>
     <input type="file" name="img" id="img" onchange="tampilkanPreview(this,'preview')"/> 
-            <img id="preview" src="" alt="" style="margin-left:150px;" width="25%"/>
     </div>
     <div class="form-group row">
       <input type="hidden" class="form-control" id="id_kategori" name="id_kategori" value="<?= $kt ?>" readonly>
@@ -236,13 +235,16 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
                 
               </div>
             </div>
+
+
+
+            
           <?php               
           } 
           ?>
         </tbody>
       </table>          
   </div>
-
 <!-- Modal Edit HTML -->
 
 
@@ -312,6 +314,8 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
       <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="deskripsi"  required>
     </div>
   </div>
+  <?php echo "<td><a href='#myModal' class='badge badge-primary' id='custId' data-toggle='modal' data-id=".$data['id_bayar']."> <i class='fa fa-images'></i> Bukti Transfer  </a></td>"; ?>
+
   
   <div class="form-group row">
     <label for="fasilitas" class="col-sm-3 col-form-label">Foto Paket</label>
@@ -340,12 +344,22 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 
 <!-- End Modal Tambah HTML -->
 
+<!-- MODAL DESKRIPSI -->
+<div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <p><b>DESKRIPSI PRODUK</b></p> <button type="button" class="badge badge-light" data-dismiss="modal"><i class="fa fa-times"> </i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="fetched-data"></div>
+                </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
 
-
-<!-- DATA KATEGORI -->
-
-
-<!-- End Modal Edit HTML -->
 
 <!-- Modal Hapus HTML -->
 
@@ -353,7 +367,7 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 <br><br><br>
 
   <!-- Footer -->
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
 <?php include 'footer.php' ?>
 
 <script>
@@ -369,16 +383,15 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 });
     </script>
   
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
         $('#myModal').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id_produk');
+            var rowid = $(e.relatedTarget).data('id');
             //menggunakan fungsi ajax untuk pengambilan data
             $.ajax({
                 type : 'post',
-                url : 'dataproduk.php',
-                data :  'rowid='+rowid,
+                url : 'deskripsiproduk.php',
+                data : 'rowid='+ rowid,
                 success : function(data){
                 $('.fetched-data').html(data);//menampilkan data ke dalam modal
                 }
@@ -386,19 +399,5 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
          });
     });
   </script>
-   <script type="text/javascript">
-    $(document).ready(function(){
-        $('#myModal1').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id_kategori');
-            //menggunakan fungsi ajax untuk pengambilan data
-            $.ajax({
-                type : 'post',
-                url : 'dataproduk.php',
-                data :  'rowid='+rowid,
-                success : function(data){
-                $('.fetched-data').html(data);//menampilkan data ke dalam modal
-                }
-            });
-         });
-    });
-  </script>
+  
+   

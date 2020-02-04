@@ -16,6 +16,7 @@ include 'fungsi/cek_session.php';    // Panggil data setting
 
   <title> Admin | Laporan Pelanggan</title>
 
+  <link href="images/logo1.ico" rel="shortcut icon"/>
   <!-- Custom fonts for this template-->
       <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link

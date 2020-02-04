@@ -24,6 +24,9 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  
+  
+  <link href="images/logo1.ico" rel="shortcut icon"/>
 
 </head>
  <!-- Page Wrapper -->
@@ -55,7 +58,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
       <!-- Page Heading -->
 
           <div class="row">
- 
+
 
 <!-- Area Chart -->
 <div class="col-xl-12 col-lg-8">
@@ -72,7 +75,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
     <!-- Card Body -->
  
      <!-- DataTales Example -->
-    <div class="card-body">
+     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
         <thead style="background-color: #36B9CC; color:#fff; line-height:8px; text-align: center">
@@ -118,10 +121,8 @@ include 'fungsi/cek_session.php';      // Panggil data setting
 						};
 						?>
            </td>
-           <?php $a = $data['order_id']; ?>
-           <td>   
-           <a href="#" type="button" class="badge badge-primary" data-toggle="modal" data-target="#myModal1"><i class='fa fa-images'></i> Bukti Transfer </a></td> 
-    <td>
+           <?php echo "<td><a href='#myModal' class='badge badge-primary' id='custId' data-toggle='modal' data-id=".$data['id_bayar']."> <i class='fa fa-images'></i> Bukti Transfer  </a></td>"; ?>
+<td>
     <?php
           $ido = $data['order_id']; 
           $idb = $data['id_bayar'];
@@ -142,62 +143,33 @@ include 'fungsi/cek_session.php';      // Panggil data setting
     
     </td>
    </tr>
-                         
-                       <!-- Modal Edit -->
-                     <div class="modal fade" id="myModal1" role="dialog">
-                       <div class="modal-dialog" role="document">
-                   <div class="modal-content">
-                   <div class="modal-header">
-                   <h5 class="ml-5">BUKTI PEMBAYARAN</h5>
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                   </button>
-                   </div>
-                   <div class="modal-body">
-                   <form action="modul/aksivalidasi/statusupdate.php" method="post">
-                   <?php
-                        $id = $data['id_bayar']; 
-                        $query_view = mysqli_query($conn, "SELECT * FROM tb_bayar WHERE id_bayar = '$id'");
-                        //$result = mysqli_query($conn, $query);
-                        while ($row = mysqli_fetch_assoc($query_view)) { $img = $row['bukti_transfer']; 
-                        ?>
-                   <img src='../gambar/bukti_pembayaran/<?= $img ?>' width='450px' height='600px'>
-                   <hr>
-                      <?php 
-                        }
-                        //mysql_close($host);
-                        ?>        
-                      </form>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-            <?php 
-                        }
-                        //mysql_close($host);
-                        ?>  
+   <?php
+
+  }                     ?>  
         </tbody>
       </table>  
 
       </div>
             </div>
+                
 
- 
+  <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <p><b>BUKTI TRANSFER</b></p> <button type="button" class="badge badge-light" data-dismiss="modal"><i class="fa fa-times"> </i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="fetched-data"></div>
+                </div>
+                </div>
             </div>
-                   </div>
-                       </div>
+        </div>
+    </div>
+</div>
 
-<br> <br> <br> <br> <br> <br> <br>
-
-<br> <br> <br> <br> <br> <br> <br>
+</div>
     <!-- Modal HTML -->
-<!-- Area Chart -->
-
-
-
-
-     <!-- Modal HTML End -->
 
 <!-- Modal HTML -->
 
@@ -206,7 +178,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
   <!-- End of Main Content -->
 
   <!-- Footer -->
-
+<br><br><br><br><br>
 <?php include 'footer.php' ?>
 
 <script>
@@ -214,16 +186,15 @@ include 'fungsi/cek_session.php';      // Panggil data setting
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         });
     </script>
-     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
         $('#myModal').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id_bayar');
+            var rowid = $(e.relatedTarget).data('id');
             //menggunakan fungsi ajax untuk pengambilan data
             $.ajax({
                 type : 'post',
-                url : 'datapembayaran.php',
-                data :  'rowid='+rowid,
+                url : 'buktitransfer.php',
+                data :  'rowid='+ rowid,
                 success : function(data){
                 $('.fetched-data').html(data);//menampilkan data ke dalam modal
                 }

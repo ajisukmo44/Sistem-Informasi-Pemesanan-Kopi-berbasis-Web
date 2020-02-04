@@ -2,7 +2,7 @@
  <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>Kopi Mukidi &copy;2019</span>
+        <span>Kopi Mukidi &copy;2020</span>
       </div>
     </div>
   </footer>
