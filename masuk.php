@@ -54,7 +54,8 @@
 
 								<div class="form-group">
 									<input type="submit" class="primary-btn btn-block" value="Login">
-									<a href="daftar.php" class="main-btn btn-block text-center">Daftar</a>
+									<a href="lupapassword.php" class="main-btn btn-block text-center" style="width:50%">Lupa Password?</a>
+									<a href="daftar.php" class="main-btn btn-block text-center" style="width:49%">Daftar</a>
 								</div>
 							</form>
 

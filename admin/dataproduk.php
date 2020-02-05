@@ -314,8 +314,7 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
       <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="deskripsi"  required>
     </div>
   </div>
-  <?php echo "<td><a href='#myModal' class='badge badge-primary' id='custId' data-toggle='modal' data-id=".$data['id_bayar']."> <i class='fa fa-images'></i> Bukti Transfer  </a></td>"; ?>
-
+ 
   
   <div class="form-group row">
     <label for="fasilitas" class="col-sm-3 col-form-label">Foto Paket</label>

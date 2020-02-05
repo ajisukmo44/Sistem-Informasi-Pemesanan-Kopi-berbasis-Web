@@ -136,11 +136,7 @@ include 'fungsi/cek_session.php';      // Panggil data setting
         </button>
       </div>
       <div class="modal-body">
-<<<<<<< HEAD
       <form action="modul/aksikirim/aksieditkirim.php" method="post">
-=======
-      <form action="modul/aksiuser/aksieditkirim.php" method="post">
->>>>>>> 738e1f491b42bc96835d06d519f816d5dced2dc9
       <?php
                         $id = $data['no_resi']; 
                         $query_view = mysqli_query($conn, "SELECT * FROM tb_pengiriman WHERE no_resi='$id'");

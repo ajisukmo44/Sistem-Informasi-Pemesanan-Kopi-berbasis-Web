@@ -18,7 +18,7 @@ $tambah=$kode+1; //kode yang sudah di pecah di tambah 1
 	<div class="container">
 		<ul class="breadcrumb">
 			<li><a href="index.php">Home</a></li>
-			<li class="active">Daftar Customer</li>
+			<li class="active">Daftar Pelanggan</li>
 		</ul>
 	</div>
 </div>

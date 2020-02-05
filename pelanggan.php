@@ -18,7 +18,7 @@
 
 			<div id="main" class="col-md-12">
 				
-				<h4>DATA PROFIL</h4>
+				<h4>DATA PROFIL <a href="editprofil.php" class="badge badge-warning" style="background-color:#DD8A0D"> EDIT</a></h4>
 
 				<div id="store">
 
