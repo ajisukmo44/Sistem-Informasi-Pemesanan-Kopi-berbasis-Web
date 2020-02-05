@@ -104,7 +104,7 @@ include '../fungsi/time.php';
   <br>
   <br>
          <?php
-         $sql 	= "SELECT * FROM tb_pengiriman";
+         $sql 	= "SELECT * FROM tb_pengiriman WHERE tanggal_kirim between '$tanggalawal' AND '$tanggalakhir'";
          $data 	= mysqli_query($conn, $sql);
          $total = mysqli_num_rows($data);
          ?>

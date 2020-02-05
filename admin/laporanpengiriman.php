@@ -3,7 +3,7 @@ include 'koneksi.php';               // Panggil koneksi ke database
 include 'fungsi/cek_login.php';      // Panggil fungsi cek sudah login/belum
 include 'fungsi/cek_session.php';    // Panggil data setting
 
-$sql = "SELECT min(tanggal_transfer) AS min_tanggal FROM tb_bayar";
+$sql = "SELECT min(tanggal_kirim) AS min_tanggal FROM tb_pengiriman";
 $result = mysqli_query($conn, $sql);
   while ($data = mysqli_fetch_array($result))         
 

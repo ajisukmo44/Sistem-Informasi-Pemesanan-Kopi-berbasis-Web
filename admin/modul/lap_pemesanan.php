@@ -73,7 +73,7 @@ include '../fungsi/time.php';
    	  <?php
       $tanggalakhir  = date('Y-m-d', strtotime($_POST['tanggal1']));
       $tanggalawal   = date('Y-m-d', strtotime($_POST['tanggal']));
-      $sql = "SELECT * FROM tb_order WHERE tgl_checkout between '$tanggalawal' AND '$tanggalakhir'  AND status=3 OR  status=4 OR status=5 ORDER BY order_id ASC";
+      $sql = "SELECT * FROM tb_order WHERE tgl_checkout between '$tanggalawal' AND '$tanggalakhir'  AND status between '3' AND '5' ORDER BY order_id ASC";
 
       $result = mysqli_query($conn, $sql);
       $no = 1;
@@ -107,7 +107,7 @@ include '../fungsi/time.php';
   <br>
   <br>
          <?php
-         $sql 	= "SELECT * FROM tb_order WHERE status =3 OR status=4 OR status=5";
+         $sql 	= "SELECT * FROM tb_order WHERE  tgl_checkout between '$tanggalawal' AND '$tanggalakhir' AND status between '3' AND '5'";
          $data 	= mysqli_query($conn, $sql);
          $total = mysqli_num_rows($data);
          ?>
